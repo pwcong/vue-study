@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+</head>
+<body>
+<div id="vm">
+
+	<p v-if="isActive">Now you can see me.</p>
+	<p v-else>I have been hidden.</p>
+	<p v-else>What happened ?</p>
+	<button @click="changeStatus">Display/Hide</button>
+
+	<hr/>
+
+	<div v-if="showDiv">
+		<p>one</p>
+		<p>two</p>
+		<p>three</p>
+	</div>
+
+	<hr/>
+
+	<input type="text" v-model="type">
+
+	<p v-if="type === 'A'">A</p>
+	<p v-else-if="type === 'B'">B</p>
+	<p v-else-if="type === 'C'">C</p>
+	<p v-else>unkonwn</p>
+
+	<hr/>
+
+	<div v-if="loginType === 'username'">
+		<label>Username:</label>
+		<input type="text" placeholder="enter username">
+	</div>
+	<div v-else-if="loginType === 'email'">
+		<label>Email:</label>
+		<input type="text" placeholder="enter email">
+	</div>
+
+	<button @click="changeLoginType">更改登陆方式(复用元素更新视图)</button>
+
+	<hr/>
+
+	<div v-if="loginType2 === 'username'">
+		<label>Username:</label>
+		<input type="text" placeholder="enter username" key="username-input">
+	</div>
+	<div v-else-if="loginType2 === 'email'">
+		<label>Email:</label>
+		<input type="text" placeholder="enter email" key="email-input">
+	</div>
+
+	<button @click="changeLoginType2">更改登陆方式(非复用元素更新视图)</button>
+	
+</div>
+
+<script src="./js/bundle.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Filters</title>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+</head>
+<body>
+<div id="vm">
+	<p>
+		<p>source: {{ word }}</p>
+		<p>result-1: {{ word | decorate }}</p>
+		<p>result-2: {{ word | decorate | reverse }}</p>
+		<p>result-3: {{ word | decorate("*") }}</p>
+		<input type="text" v-model="word">
+	</p>
+	
+</div>
+
+<script src="./js/bundle.js"></script>
+</body>
+</html>

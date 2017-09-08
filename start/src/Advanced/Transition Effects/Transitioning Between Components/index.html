@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transitioning Between Components</title>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+
+    <style>
+    	.component-fade-enter-active, .component-fade-leave-active {
+		  transition: opacity .3s ease;
+		}
+		.component-fade-enter, .component-fade-leave-active {
+		  opacity: 0;
+		}
+    </style>
+
+</head>
+<body>
+<div id="vm">
+
+	<div>
+		<input type="radio" v-model="view" value="v-a" id="v-a"><label for="v-a">A</label>
+		<input type="radio" v-model="view" value="v-b" id="v-b"><label for="v-b">B</label>
+		<transition name="component-fade" mode="out-in">
+ 			<component v-bind:is="view"></component>
+		</transition>
+	</div>
+
+</div>
+
+<script src="./js/bundle.js"></script>
+</body>
+</html>

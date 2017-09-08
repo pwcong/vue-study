@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-show</title>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+</head>
+<body>
+<div id="vm">
+
+	<p v-show="show">Now you can see me.</p>
+
+	<div v-show="showDiv">
+		<p>one</p>
+		<p>two</p>
+		<p>three</p>
+	</div>
+
+	<button @click="onClick">显示/隐藏</button>
+	
+</div>
+
+<script src="./js/bundle.js"></script>
+</body>
+</html>

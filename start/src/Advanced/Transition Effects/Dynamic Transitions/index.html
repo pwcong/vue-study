@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Dynamic Transitions</title>
+		<script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.4.1/velocity.min.js"></script>
+
+		
+	</head>
+	<body>
+		<div id="vm">
+			<div id="dynamic-fade-demo">
+				Fade In: <input type="range" v-model="fadeInDuration" min="0" v-bind:max="maxFadeDuration">
+				Fade Out: <input type="range" v-model="fadeOutDuration" min="0" v-bind:max="maxFadeDuration">
+				<transition
+					v-bind:css="false"
+					v-on:before-enter="beforeEnter"
+					v-on:enter="enter"
+					v-on:leave="leave"
+					>
+					<p v-if="show">hello</p>
+				</transition>
+				<button v-on:click="stop = true">Stop it!</button>
+			</div>
+		</div>
+		<script src="./js/bundle.js"></script>
+	</body>
+</html>

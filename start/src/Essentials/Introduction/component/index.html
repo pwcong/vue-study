@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>component</title>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+</head>
+<body>
+<div id="vm">
+	
+	<my-title v-bind:title="myTitle"></my-title>
+
+	<ol>
+		<todo-item v-for="item in list" v-bind:todo='item'></todo-item>
+	</ol>
+
+	
+
+</div>
+
+<script src="./js/bundle.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Modifiers</title>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+</head>
+<body>
+<div id="vm">
+
+	<div @click="say('Hi')" :style="style">
+		
+		<p>点击这个 Div 会 Say Hi</p>
+		<p @click="say('Hello')">这行绑定了 Say Hello 事件，因为事件冒泡 Div 会 Say Hi</p>
+
+	</div>
+
+	<hr>
+
+	<div @click="say('Hi')" :style="style">
+		
+		<p>点击这个 Div 会 Say Hi</p>
+		<p @click.stop="say('Hello')">这行绑定了 Say Hello 事件，因为消除了事件冒泡所以 Div 不会 Say Hi</p>
+
+	</div>
+
+	<hr>
+
+	<a href="http://www.pwcong.me" @click.prevent="say('因为事件修饰符.prevent，界面不会跳转。对于表单来说界面不会重载')">www.pwcong.me</a>
+	<a href="http://www.pwcong.me" @click.prevent="say('事件修饰符串联.stop.prevent')">www.pwcong.me</a>
+	
+	<hr>
+
+	<div @click.self="say('Hi')" :style="style">
+		
+		<p>点击这个 Div 会 Say Hi</p>
+		<p @click="say('Hello')">这行绑定了 Say Hello 事件，因为 Div 事件修饰符 .self 因此 Div 不会 Say Hi</p>
+
+	</div>
+
+	<hr>
+
+	<button @click.once="say('因为修饰符.once，因此只说一次，下次不说了')">按钮</button>
+
+</div>
+
+<script src="./js/bundle.js"></script>
+</body>
+</html>

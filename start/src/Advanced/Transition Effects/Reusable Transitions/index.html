@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Reusabel Transitions</title>
+		<script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	</head>
+	<body>
+		<div id="vm">
+
+			<div id="my-transition-group-demo">
+				<button @click="items.push('item '+items.length)">Add</button>
+				<button @click="items.pop()">Remove</button>
+
+				<transition-group
+					enter-active-class="animated fadeIn"
+					leave-active-class="animated fadeOut">
+					<p v-for="item in items" :key="item">{{item}}</p>
+
+				</transition-group>
+
+			</div>
+
+			<hr>
+
+			<div id="template-transition-demo">
+				<button @click="show=!show">Show/Hide</button>
+				<my-special-transition>
+					<p v-if="show">Hello Pwcong</p>
+				</my-special-transition>
+
+			</div>
+
+
+		</div>
+		<script src="./js/bundle.js"></script>
+	</body>
+</html>

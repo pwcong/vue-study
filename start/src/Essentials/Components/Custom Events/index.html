@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Events</title>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+</head>
+<body>
+<div id="vm">
+	
+	<div id="counter-event-example">
+	  <p>{{ total }}</p>
+	  <button-counter v-on:increment="incrementTotal"></button-counter>
+	  <button-counter v-on:increment="incrementTotal"></button-counter>
+	</div>
+
+	<hr>
+
+	<div>
+		
+		<my-component-1 @click.native="onNativeClick"></my-component-1>
+		<button @click="onNativeClick($event)">和上面作用一样</button>
+		
+	</div>
+
+	<hr>
+
+	<input type="text" v-model="msg">
+	<p>Msg: {{msg}}</p>
+
+	<!--上面相当于下面的语法糖-->
+
+	<input type="text" :word="word" @input="word = $event.target.value">
+	<p>Word: {{word}}</p>
+
+	<hr>
+
+	<currency-input v-model="price"></currency-input>
+
+	<hr>
+
+	<div>
+		<p>空的Vue实例bus作为中央事件总线</p>
+		<p>bus.$on(event, function) 创建监听事件</p>
+		<p>bus.$emit(event, ...args) 触发事件</p>
+	</div>
+
+
+</div>
+
+<script src="./js/bundle.js"></script>
+</body>
+</html>

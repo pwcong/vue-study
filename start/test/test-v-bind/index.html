@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>test-v-bind</title>
+    <script src="../../public/js/vue.js"></script>
+    <link href="./css/style.css" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+    <p v-bind:class="{active:isActive}">Hello Pwcong</p>
+    <button v-on:click="changeColor">改变颜色</button>
+</div>
+
+<script src="./js/demo.js"></script>
+</body>
+</html>

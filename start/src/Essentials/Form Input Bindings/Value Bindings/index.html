@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Value Bindings</title>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+</head>
+<body>
+<div id="vm">
+	
+	<!-- 当选中时，`picked` 为字符串 "Hello" -->
+	<input type="radio" name="picked" v-model="picked" value="Hello">
+	<input type="radio" name="picked" v-model="picked" value="Hi">
+
+	<p>Picked: {{ picked }}</p>
+
+	<input type="radio" name="customPicked" v-model="customPicked" :value="radio_1">
+	<input type="radio" name="customPicked" v-model="customPicked" :value="radio_2">
+
+	<p>Picked: {{ customPicked }}</p>
+
+
+	<hr>
+
+	<!-- `toggle` 为 true 或 false -->
+	<input type="checkbox" id="toggle-1" v-model="toggle_1">
+	<label for="toggle-1">{{ toggle_1 }}</label>
+
+	<input type="checkbox" id="toggle-2" v-model="toggle_2" :true-value="success" :false-value="faild">
+	<label for="toggle-2">{{ toggle_2 }}</label>
+
+	<hr>
+
+	<!-- 当选中时，`selected` 为字符串 "abc" -->
+	<select v-model="selected">
+	  <option value="a">A</option>
+	  <option value="b">B</option>
+	  <option value="c">C</option>
+	</select>
+	<p>Selected: {{ selected }}</p>
+
+	<select v-model="customSelected">
+	  <option :value="{ number: 1 }">1</option>
+	  <option :value="{ number: 2 }">2</option>
+	  <option :value="{ number: 3 }">3</option>
+	</select>
+	<p>Custom Selected: {{ customSelected }}</p>
+
+	
+
+</div>
+
+<script src="./js/bundle.js"></script>
+</body>
+</html>

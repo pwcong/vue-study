@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Misc</title>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+</head>
+<body>
+<div id="vm">
+
+	<my-component-1 :items="items">
+		<h1 slot="header">Hello Pwcong</h1>
+		<template slot="footer" scope="props">
+			<p >{{ props.footerText}}</p>
+		</template>
+
+	</my-component-1>
+
+	<hr>
+
+	<my-component-2 ref="my_component_2"></my-component-2>
+	
+	<hr>
+
+	<my-component-3></my-component-3>
+
+	<hr>
+	
+	<my-component-4></my-component-4>
+
+	<hr>
+	
+	<my-component-5 :enable="true"></my-component-5>
+	
+	<hr>
+
+	<div>
+		<span>{{ folder.name }}</span>
+		<tree-folder-contents :folder="folder"></tree-folder-contents>
+	</div>
+
+	<hr>
+
+	<inline-component inline-template>
+		
+		<div>
+			<h3>inline-template</h3>
+			<p>
+				如果子组件有 inline-template 特性，组件将把它的内容当作它的模板，而不是把它当作分发内容。这让模板更灵活。
+			</p>
+			<p>
+				但是 inline-template 让模板的作用域难以理解。最佳实践是使用 template 选项在组件内定义模板或者在 .vue 文件中使用 template 元素。
+			</p>
+		</div>
+
+	</inline-component>
+
+	<hr>
+
+	<script type="text/x-template" id="hello-world-template">
+		<p>Hello hello hello</p>
+	</script>
+
+	<hello-world></hello-world>
+
+	<hr>
+
+	<terms-of-service></terms-of-service>
+
+
+</div>
+
+<script src="./js/bundle.js"></script>
+</body>
+</html>

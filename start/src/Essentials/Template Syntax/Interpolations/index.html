@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interpolations</title>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+    <style>
+    	.active{
+    		color: red;
+    	}
+
+
+    </style>
+</head>
+<body>
+<div id="vm">
+
+	<p>Message: {{msg}}</p>
+
+	<p v-html="msg"></p>
+
+	<p v-once>Message(once): {{msg_once}}</p>
+
+	<p v-bind:class="p_class">I'm active</p>
+
+	<p><input type="text" v-bind:disabled="isDisabled"><button v-on:click="showOrHide">启用/禁用</button></p>
+
+	<p>{{count + 1}}</p>
+	
+	<p>{{isDisabled ? "禁用" : "启用"}}</p>
+
+</div>
+
+<script src="./js/bundle.js"></script>
+</body>
+</html>

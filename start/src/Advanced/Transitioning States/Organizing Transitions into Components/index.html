@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Organizing Transitions into Components</title>
+		<script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+		<script src="https://unpkg.com/tween.js@16.3.4"></script>
+	</head>
+	<body>
+		<div id="vm">
+			<input v-model.number="firstNumber" type="number" step="20"> +
+			<input v-model.number="secondNumber" type="number" step="20"> =
+			{{ result }}
+			<p>
+				<animated-integer v-bind:value="firstNumber">
+				</animated-integer>
+				+
+				<animated-integer v-bind:value="secondNumber">
+				</animated-integer>
+				=
+				<animated-integer v-bind:value="result">
+				</animated-integer>
+			</p>
+		</div>
+		<script src="./js/bundle.js"></script>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Directives</title>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+</head>
+<body>
+<div id="vm">
+	<p>
+		<span v-if="active">Now you can see me.</span>
+		<button v-on:click="showOrHide">显示/隐藏</button>
+	</p>
+	<p>
+		<a v-bind:href="url">{{url}}</a>
+		<input type="text" v-model="url">
+	</p>
+
+	<p>
+		<form action="#" method="post" v-on:submit.prevent="onSubmit">
+			
+			<input type="text" name="value">
+			<input type="submit">
+
+		</form>
+	</p>
+
+	
+</div>
+
+<script src="./js/bundle.js"></script>
+</body>
+</html>

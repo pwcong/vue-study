@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Hook Functions</title>
+		<script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="vm">
+
+			<!-- <input type="text" v-directive> -->
+			<button @click="show=!show">Show/Hide</button>
+			<input v-if="show" type="text" v-my-directive v-model="msg">
+	
+		</div>
+		<script src="./js/bundle.js"></script>
+	</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Props</title>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+</head>
+<body>
+<div id="vm">
+	
+	<my-component-1 :title="title"></my-component-1>
+
+	<hr>
+
+	<my-component-2 my-simple-title="Hello World"></my-component-2>
+
+	<hr>
+
+	<div>
+		<input type="text" v-model="msg">
+		<my-component-3 :msg="msg"></my-component-3>
+	</div>
+	
+	<hr>
+
+	<my-component-3 :msg="'Welcome'"></my-component-3>
+
+	<hr>
+
+	<my-component-4 :word="'WELCOME'" :initialCount="88"></my-component-4>
+	
+	<hr>
+
+	<my-component-5 :prop-c="'Hello'" :prop-f="100"></my-component-5>
+
+
+</div>
+
+<script src="./js/bundle.js"></script>
+</body>
+</html>

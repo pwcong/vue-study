@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Components</title>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+</head>
+<body>
+<div id="vm">
+	
+	<my-component-1></my-component-1>
+
+	<hr>
+
+	<ul>
+		<li is="my-component-2" v-for="item in items" :item="item"></li>
+	</ul>
+
+	<hr>
+
+	<component :is="currentView_1"></component>
+
+	<component :is="currentView_2"></component>
+
+	<hr>
+	
+	<!--如果把切换出去的组件保留在内存中，可以保留它的状态或避免重新渲染。为此可以添加一个 keep-alive 指令参数-->
+	<keep-alive>
+		<component :is="currentView"></component>
+	</keep-alive>
+	<button @click="onClick">替换组件</button>
+
+</div>
+
+<script src="./js/bundle.js"></script>
+</body>
+</html>

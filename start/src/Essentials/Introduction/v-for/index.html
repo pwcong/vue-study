@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+</head>
+<body>
+<div id="vm">
+	<ol>
+		<li v-for="todo in todos">
+			{{todo.text}}	
+		</li>
+	</ol>
+</div>
+
+<script src="./js/bundle.js"></script>
+</body>
+</html>

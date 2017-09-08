@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Basics</title>
+		<script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="vm">
+
+			<script type="text/x-template" id="anchored-heading-template">
+				<div>
+					<h1 v-if="level===1">
+						<slot></slot>
+					</h1>
+					<h2 v-if="level===2">
+						<slot></slot>
+					</h2>
+					<h3 v-if="level===3">
+						<slot></slot>
+					</h3>
+					<h4 v-if="level===4">
+						<slot></slot>
+					</h4>
+					<h5 v-if="level===5">
+						<slot></slot>
+					</h5>
+					<h6 v-if="level===6">
+						<slot></slot>
+					</h6>
+				</div>
+
+			</script>
+
+			<div>
+				<anchored-heading :level.number="1">Hello Pwcong</anchored-heading>
+				<anchored-heading :level.number="2">Hello Pwcong</anchored-heading>
+				<anchored-heading :level.number="3">Hello Pwcong</anchored-heading>
+				<anchored-heading :level.number="4">Hello Pwcong</anchored-heading>
+				<anchored-heading :level.number="5">Hello Pwcong</anchored-heading>
+				<anchored-heading :level.number="6">Hello Pwcong</anchored-heading>
+			</div>
+
+			<hr>
+
+			<div>
+				
+				<new-anchored-heading :level.number="1">Hello Pwcong</new-anchored-heading>
+				<new-anchored-heading :level.number="2">Hello Pwcong</new-anchored-heading>
+				<new-anchored-heading :level.number="3">Hello Pwcong</new-anchored-heading>
+				<new-anchored-heading :level.number="4">Hello Pwcong</new-anchored-heading>
+				<new-anchored-heading :level.number="5">Hello Pwcong</new-anchored-heading>
+				<new-anchored-heading :level.number="6">Hello Pwcong</new-anchored-heading>
+
+			</div>
+			
+
+			
+		</div>
+		<script src="./js/bundle.js"></script>
+	</body>
+</html>

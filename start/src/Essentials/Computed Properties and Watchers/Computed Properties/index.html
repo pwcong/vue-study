@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Computed Properties and Watchers</title>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+</head>
+<body>
+<div id="vm">
+
+	<p>Source message: {{ message }}</p>
+	
+	<p>Template reversed message: {{ message.split("").reverse().join("") }}</p>
+
+	<p>Computed reversed message: {{ computedReversedMessage }}</p>
+
+	<p>Methods reversed message: {{ methodsReversedMessage() }}</p>
+
+	<p>ComputedTime: {{ computedTime }} | MethodsTime: {{ methodsTime() }}</p>
+
+	<p>{{ fullName }}</p>
+	
+</div>
+
+<script src="./js/bundle.js"></script>
+</body>
+</html>

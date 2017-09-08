@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Displaying Filtered/Sorted Results</title>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+</head>
+<body>
+<div id="vm">
+	<ul>
+		<li v-for="item in resultItems">{{ item }}</li>
+	</ul>
+
+	<ul>
+		<li v-for="item in checkItems(items)">{{ item }}</li>
+	</ul>
+</div>
+
+<script src="./js/bundle.js"></script>
+</body>
+</html>

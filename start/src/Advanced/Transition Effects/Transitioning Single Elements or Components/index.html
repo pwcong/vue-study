@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transitioning Single Elements/Components</title>
+    <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.4.1/velocity.min.js"></script>
+    <link href="https://unpkg.com/animate.css@3.5.2/animate.min.css" rel="stylesheet" type="text/css">
+    <style>
+		.fade-enter-active, .fade-leave-active {
+			transition: opacity .5s
+		}
+		.fade-enter, .fade-leave-active {
+			opacity: 0
+		}
+
+		/* 可以设置不同的进入和离开动画 */
+		/* 设置持续时间和动画函数 */
+		.slide-fade-enter-active {
+		  transition: all .3s ease;
+		}
+		.slide-fade-leave-active {
+		  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+		}
+		.slide-fade-enter, .slide-fade-leave-active {
+		  transform: translateX(10px);
+		  opacity: 0;
+		}
+
+
+		.bounce-enter-active {
+		  animation: bounce-in .5s;
+		}
+		.bounce-leave-active {
+		  animation: bounce-out .5s;
+		}
+		@keyframes bounce-in {
+		  0% {
+		    transform: scale(0);
+		  }
+		  50% {
+		    transform: scale(1.5);
+		  }
+		  100% {
+		    transform: scale(1);
+		  }
+		}
+		@keyframes bounce-out {
+		  0% {
+		    transform: scale(1);
+		  }
+		  50% {
+		    transform: scale(1.5);
+		  }
+		  100% {
+		    transform: scale(0);
+		  }
+		}
+
+
+		.me-enter-active, .me-leave-active{
+			transition: all 1.5s;
+		}
+
+		.me-enter, .me-leave-active{
+			opacity: 0;
+		}
+
+    </style>
+</head>
+<body>
+<div id="vm">
+
+	<!-- 
+
+	Vue 提供了 transition 的封装组件，在下列情形中，可以给任何元素和组件添加 entering/leaving 过渡
+
+	* 条件渲染 （使用 v-if）
+	* 条件展示 （使用 v-show）
+	* 动态组件
+	* 组件根节点 
+
+	元素封装成过渡组件之后，在遇到插入或删除时，Vue 将
+	自动嗅探目标元素是否有 CSS 过渡或动画，并在合适时添加/删除 CSS 类名。
+
+	如果过渡组件设置了过渡的 JavaScript 钩子函数，会在相应的阶段调用钩子函数。
+
+	如果没有找到 JavaScript 钩子并且也没有检测到 CSS 过渡/动画，DOM 操作（插入/删除）在下一帧中立即执行。(注意：此指浏览器逐帧动画机制，与 Vue，和Vue的 nextTick 概念不同)
+
+
+	-->
+
+	<div>
+		<button @click="isActive=!isActive">显示/隐藏</button>
+		<transition name="fade">
+			<h1 v-if="isActive">Hello Pwcong</h1>	
+		</transition>
+	</div>
+
+	<hr>
+
+	<!--
+
+	会有 4 个(CSS)类名在 enter/leave 的过渡中切换
+	
+	* v-enter: 定义进入过渡的开始状态。在元素被插入时生效，在下一个帧移除。
+	* v-enter-active: 定义进入过渡的结束状态。在元素被插入时生效，在 transition/animation 完成之后移除。
+	* v-leave: 定义离开过渡的开始状态。在离开过渡被触发时生效，在下一个帧移除。
+	* v-leave-active: 定义离开过渡的结束状态。在离开过渡被触发时生效，在 transition/animation 完成之后移除。
+
+	-->
+
+	<div>
+		<button @click="isShown = !isShown">
+    		Toggle render
+  		</button>
+  		<transition name="slide-fade">
+    		<p v-if="isShown">hello</p>
+  		</transition>
+	</div>
+	
+	<hr>
+
+	<!--
+	CSS 动画用法同 CSS 过渡，区别是在动画中 v-enter 类名在节点插入 DOM 后不会立即删除，而是在 animationend 事件触发时删除。
+	-->
+	<div>
+		<button @click="isEnable = !isEnable">Toggle show</button>
+	  	<transition name="bounce">
+	    	<p v-if="isEnable">Look at me!</p>
+	  	</transition>
+	</div>
+
+	<hr>
+
+	<!--
+	我们可以通过以下特性来自定义过渡类名：
+
+	* enter-class
+	* enter-active-class
+	* leave-class
+	* leave-active-class
+
+	他们的优先级高于普通的类名，这对于 Vue 的过渡系统和其他第三方 CSS 动画库，如 Animate.css 结合使用十分有用。
+	-->
+
+	<div>
+  		<button @click="isOn = !isOn">
+    		Toggle render
+  		</button>
+  		<transition
+    		enter-active-class="animated tada"
+    		leave-active-class="animated bounceOutRight">
+    		<p v-if="isOn">hello</p>
+  		</transition>
+	</div>
+
+	<hr>
+
+	<!--
+
+	Vue 为了知道过渡的完成，必须设置相应的事件监听器。它可以是 transitionend 或 animationend ，这取决于给元素应用的 CSS 规则。如果你使用其中任何一种，Vue 能自动识别类型并设置监听。
+	但是，在一些场景中，你需要给同一个元素同时设置两种过渡动效，比如 animation 很快的被触发并完成了，而 transition 效果还没结束。在这种情况中，你就需要使用 type 特性并设置 animation 或 transition 来明确声明你需要 Vue 监听的类型。
+
+	<transition
+	  v-on:before-enter="beforeEnter"
+	  v-on:enter="enter"
+	  v-on:after-enter="afterEnter"
+	  v-on:enter-cancelled="enterCancelled"
+	  v-on:before-leave="beforeLeave"
+	  v-on:leave="leave"
+	  v-on:after-leave="afterLeave"
+	  v-on:leave-cancelled="leaveCancelled">
+	  ...
+	</transition>
+	
+
+	<div>
+		<button @click="isMe=!isMe">Toggle Me</button>
+		<transition
+			name="me"
+			@before-enter="beforeEnter"
+			@enter="enter"
+			@after-enter="afterEnter"
+			@enter-cancelled="enterCancelled"
+			@before-leave="beforeLeave"
+			@leave="leave"
+			@after-leave="afterLeave"
+			@leave-cancelled="leaveCancelled"
+		>
+			<p v-if="isMe">Hello Pwcong</p>
+		</transition>
+
+	</div>
+
+	<hr>
+	-->
+
+	<!--
+	推荐对于仅使用 JavaScript 过渡的元素添加 v-bind:css="false"，Vue 会跳过 CSS 的检测。这也可以避免过渡过程中 CSS 的影响。
+	-->
+
+	
+
+	<div id="example-4">
+	  	<button @click="isOK=!isOK">
+	    	Toggle
+	  	</button>
+	  	<transition
+		    v-on:before-enter="beforeEnter"
+		    v-on:enter="enter"
+		    v-on:leave="leave"
+		    v-bind:css="false">
+		    <p v-if="isOK">
+		    	Demo
+		    </p>
+	  	</transition>
+	</div>
+
+</div>
+
+<script src="./js/bundle.js"></script>
+</body>
+</html>
